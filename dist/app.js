@@ -15,3 +15,7 @@ document.querySelectorAll('[data-rocks]').forEach((container,index)=>{let seed=4
 const requestedMaterial=new URLSearchParams(location.search).get('material');
 const materialSelect=document.querySelector('#material');
 if(materialSelect&&[...materialSelect.options].some(option=>option.value===requestedMaterial)){materialSelect.value=requestedMaterial;}
+
+const requestedService=new URLSearchParams(location.search).get('service');
+const serviceSelect=document.querySelector('#service');
+if(serviceSelect&&[...serviceSelect.options].some(option=>option.value===requestedService)){serviceSelect.value=requestedService;}

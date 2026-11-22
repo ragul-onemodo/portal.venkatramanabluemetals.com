@@ -4,3 +4,5 @@
 
 /* Shared multi-page navigation */
 nav [aria-current="page"]{color:#b94e1a;text-decoration:underline;text-underline-offset:7px}footer{flex-wrap:wrap}footer>a:not(.brand){font-size:14px}footer>a:not(.brand):hover{text-decoration:underline}@media(min-width:1051px){nav{gap:22px;font-size:13px}}@media(min-width:651px) and (max-width:1050px){header{height:92px}.menu{display:block;background:none;border:1px solid #b7bfb2;padding:9px 14px;font-size:14px}nav{display:none;position:absolute;left:0;right:0;top:92px;padding:25px 6%;background:var(--paper);align-items:stretch;box-shadow:0 15px 25px #0002}nav.open{display:flex;flex-direction:column;gap:20px}}
+
+@media(min-width:1051px) and (max-width:1200px){header{height:92px}.menu{display:block;background:none;border:1px solid #b7bfb2;padding:9px 14px;font-size:14px}nav{display:none;position:absolute;left:0;right:0;top:92px;padding:25px 6%;background:var(--paper);align-items:stretch;box-shadow:0 15px 25px #0002}nav.open{display:flex;flex-direction:column;gap:20px}}@media(min-width:1201px){nav{gap:17px;font-size:13px}}
