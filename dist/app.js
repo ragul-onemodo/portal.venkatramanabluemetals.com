@@ -19,3 +19,8 @@ if(materialSelect&&[...materialSelect.options].some(option=>option.value===reque
 const requestedService=new URLSearchParams(location.search).get('service');
 const serviceSelect=document.querySelector('#service');
 if(serviceSelect&&[...serviceSelect.options].some(option=>option.value===requestedService)){serviceSelect.value=requestedService;}
+
+function closeNavigation(returnFocus=false){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu';if(returnFocus)menu.focus();}
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open'))closeNavigation(true)});
+document.addEventListener('click',event=>{if(nav.classList.contains('open')&&!event.target.closest('header'))closeNavigation()});
+document.addEventListener('focusin',event=>{if(nav.classList.contains('open')&&!event.target.closest('header'))closeNavigation()});
