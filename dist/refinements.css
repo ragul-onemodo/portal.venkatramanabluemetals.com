@@ -22,3 +22,7 @@ header nav .button[aria-current=page]{color:var(--ink);text-decoration-color:var
 .company-email{overflow-wrap:anywhere}.company-facts{display:grid;grid-template-columns:1fr 1fr;gap:8%}.company-facts h2 em{color:var(--accent-text)}.company-facts dl{margin:0;min-width:0}.company-facts dl>div{padding:18px 0;border-bottom:1px solid var(--line)}.company-facts dt{font-size:13px;color:var(--muted);margin-bottom:8px}.company-facts dd{margin:0;font-size:18px;line-height:1.6;overflow-wrap:anywhere}.company-facts dd a{text-decoration:underline;text-underline-offset:4px}.contact-detail>div{min-width:0}.form-note a{overflow-wrap:anywhere;text-decoration:underline}@media(max-width:650px){.company-facts{grid-template-columns:1fr;gap:28px}}
 
 .brand .company-logo{display:block;width:64px;height:64px;object-fit:contain;border-radius:50%;flex-shrink:0}.site-footer .brand .company-logo{width:72px;height:72px}.brand{gap:12px}header nav{gap:20px}@media(max-width:1150px){header .brand small{font-size:9px}header nav{gap:13px;font-size:13px}}@media(max-width:650px){.brand .company-logo{width:50px;height:50px}.site-footer .brand .company-logo{width:60px;height:60px}}
+
+/* Full registered company name in the header and footer. */
+.brand>span.company-name{font-size:24px;line-height:1.1;letter-spacing:-.6px}.brand>span.company-name small{font-size:13px;line-height:1.2;letter-spacing:1px;margin-top:5px}
+@media(max-width:650px){.brand>span.company-name{font-size:20px}.brand>span.company-name small{font-size:11px;letter-spacing:.7px}header{gap:12px}}
