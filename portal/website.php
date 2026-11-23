@@ -23,7 +23,7 @@ foreach($x->query('//address[contains(@class,"business-address")]') as $n)setNod
 foreach($x->query('//section[@id="company-details"]//dt') as $n)if(trim($n->textContent)==='Established')$n->nextSibling->nodeValue=$company['established'];
 foreach($x->query('//section[@id="locations"]//article') as $i=>$n){
  if($i===1)replaceInner($d,$n,'<p class="eyebrow dark">BRANCH OFFICE</p><h3>Branch address</h3><p>'.nl2br(e($company['branch'])).'</p>');
- if($i===2)replaceInner($d,$n,'<p class="eyebrow dark">QUARRY &amp; CRUSHER SITE</p><h3>Our plant</h3><p>'.nl2br(e($company['site'])).'</p><p>Please call before visiting to confirm access arrangements.</p>');
+ if($i===2)replaceInner($d,$n,'<p class="eyebrow dark">QUARRY &amp; CRUSHER SITE</p><h3>Our Plant</h3><p>'.nl2br(e($company['site'])).'</p><p>Please call before visiting to confirm access arrangements.</p>');
 }
 foreach($x->query('//iframe[contains(@src,"youtube")]') as $n)$n->setAttribute('src','https://www.youtube-nocookie.com/embed/'.$company['video']);
 foreach($x->query('//body//text()[not(ancestor::script)]') as $n)$n->nodeValue=str_replace(['350 TPH','350 tonnes per hour'],[$company['capacity'].' TPH',$company['capacity'].' tonnes per hour'],$n->nodeValue);
