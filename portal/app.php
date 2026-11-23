@@ -57,27 +57,34 @@ function password(string $value): string {if(strlen($value)<12||strlen($value)>7
 function document(string $slug): DOMDocument {
     if(!isset(PAGES[$slug])) throw new InvalidArgumentException('Page not found.');
     $d=new DOMDocument();libxml_use_internal_errors(true);
-    $d->loadHTML('<?xml encoding="utf-8" ?>'.file_get_contents(ROOT.'/../dist/'.$slug.'.html'));libxml_clear_errors();return $d;
+    $d->loadHTML('<?xml encoding="utf-8" ?>'.file_get_contents(ROOT.'/../dist/'.$slug.'.html'));libxml_clear_errors();return
+$d;
 }
 function textNodes(DOMDocument $d): array {
-    $x=new DOMXPath($d);$out=[];
-    foreach($x->query('//main//text()[normalize-space() and not(ancestor::script) and not(ancestor::style) and not(ancestor::form) and not(ancestor::*[contains(@class,"material-card")]) and not(ancestor::*[@id="catalogue"]) and not(ancestor::*[@id="certificates"])]') as $n) $out[]=$n;
-    return $out;
+$x=new DOMXPath($d);$out=[];
+foreach($x->query('//main//text()[normalize-space() and not(ancestor::script) and not(ancestor::style) and
+not(ancestor::form) and not(ancestor::*[contains(@class,"material-card")]) and not(ancestor::*[@id="catalogue"]) and
+not(ancestor::*[@id="certificates"])]') as $n) $out[]=$n;
+return $out;
 }
 function upload(string $field): ?string {
-    $f=$_FILES[$field]??null;if(!$f||$f['error']===UPLOAD_ERR_NO_FILE) return null;
-    if($f['error']!==UPLOAD_ERR_OK || $f['size']>10*1024*1024) throw new InvalidArgumentException('Choose a JPG, PNG, WebP or PDF smaller than 10 MB.');
-    $mime=(new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']);
-    $extensions=['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp','application/pdf'=>'pdf'];
-    if(!isset($extensions[$mime])) throw new InvalidArgumentException('Only JPG, PNG, WebP and PDF files are allowed.');
-    if(str_starts_with($mime,'image/')&&!getimagesize($f['tmp_name'])) throw new InvalidArgumentException('Invalid image.');
-    $id=uid();$filename=$id.'.'.$extensions[$mime];
-    if(!is_dir(ROOT.'/storage/uploads')) mkdir(ROOT.'/storage/uploads',0750,true);
-    if(!move_uploaded_file($f['tmp_name'],ROOT.'/storage/uploads/'.$filename)) throw new RuntimeException('Upload could not be saved.');
-    save($id,'media',['name'=>mb_substr(basename($f['name']),0,180),'file'=>$filename,'mime'=>$mime,'size'=>$f['size']]);return $id;
+$f=$_FILES[$field]??null;if(!$f||$f['error']===UPLOAD_ERR_NO_FILE) return null;
+if($f['error']!==UPLOAD_ERR_OK || $f['size']>10*1024*1024) throw new InvalidArgumentException('Choose a JPG, PNG, WebP
+or PDF smaller than 10 MB.');
+$mime=(new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']);
+$extensions=['image/jpeg'=>'jpg','image/png'=>'png','image/webp'=>'webp','application/pdf'=>'pdf'];
+if(!isset($extensions[$mime])) throw new InvalidArgumentException('Only JPG, PNG, WebP and PDF files are allowed.');
+if(str_starts_with($mime,'image/')&&!getimagesize($f['tmp_name'])) throw new InvalidArgumentException('Invalid image.');
+$id=uid();$filename=$id.'.'.$extensions[$mime];
+if(!is_dir(ROOT.'/storage/uploads')) mkdir(ROOT.'/storage/uploads',0750,true);
+if(!move_uploaded_file($f['tmp_name'],ROOT.'/storage/uploads/'.$filename)) throw new RuntimeException('Upload could not
+be saved.');
+save($id,'media',['name'=>mb_substr(basename($f['name']),0,180),'file'=>$filename,'mime'=>$mime,'size'=>$f['size']]);return
+$id;
 }
 function imageUrl(string $id): string {
-    if($id==='') return '';
-    $r=record($id);if(!$r||!str_starts_with($r['mime']??'','image/')) throw new InvalidArgumentException('Select an image from the media library.');
-    return '/media/'.$id;
+if($id==='') return '';
+$r=record($id);if(!$r||!str_starts_with($r['mime']??'','image/')) throw new InvalidArgumentException('Select an image
+from the media library.');
+return '/media/'.$id;
 }
