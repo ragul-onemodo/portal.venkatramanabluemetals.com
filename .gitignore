@@ -1,0 +1,5 @@
+portal/config.php
+portal/storage/*
+!portal/storage/.gitkeep
+*.log
+__pycache__/

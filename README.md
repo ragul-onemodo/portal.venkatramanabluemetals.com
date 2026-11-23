@@ -1,7 +1,14 @@
-# VBM Quarry & Crushers
+# Venkatramana Blue Metals
 
-Responsive static concept website with local photography, animated SVG machinery, material filters, accessible process accordion, mobile navigation, and downloadable enquiry files.
+Company website and PHP/MySQL admin panel for portal.venkatramanabluemetals.com.
 
-Run `node server.cjs` and open http://127.0.0.1:4173.
+- dist/: responsive website design, seven HTML pages and image assets.
+- portal/: dynamic website, administrator login, dashboard, page editing, product and certificate management, uploads, company settings and enquiry inbox.
+- portal/public/: cPanel document root for the full website.
+- portal/DEPLOY.md: installation, administrator setup, backups and tests.
 
-Production files are in `dist/`. Business name and catalogue are provisional. Confirm product specifications and replace the concept disclaimer when real business information is available. The form downloads locally and does not submit contact information to a server. Photography: Unsplash image `photo-1580901368919-7738efb0f87e`. Google Fonts are used with local system fallbacks. Reduced-motion preferences are respected.
+The backend uses PHP, PDO and MySQL. No Composer or Node build is required. Database credentials, uploads and local test data are excluded from Git.
+
+For the original static preview only, run `node server.cjs` and open http://127.0.0.1:4173. Its form downloads an enquiry text file. For the full website, follow [the deployment guide](portal/DEPLOY.md); its form submits to the admin inbox. Automatic email notifications are not configured.
+
+Company details reflect supplied documents: established 2022, 30+ years of industry experience, 350 TPH plant capacity, GSTIN 33AAVFV7259F1ZK. Certificate placeholders remain until actual documents are uploaded. Stock photographs are representative; see dist/assets/photo-credits.txt.
