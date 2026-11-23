@@ -1,7 +1,11 @@
 <?php
 declare(strict_types=1);
 const ROOT = __DIR__;
+<<<<<<< HEAD
 const PAGES = ['index'=>'Home','products'=>'Products','services'=>'Services','mission-vision'=>'Mission & vision','plant-infrastructure'=>'Our plant','owner-profile'=>'Owner profile','contact'=>'Contact us'];
+=======
+const PAGES = ['index'=>'Home','products'=>'Products','services'=>'Services','mission-vision'=>'Mission & vision','plant-infrastructure'=>'Our Plant','owner-profile'=>'Our Owner','contact'=>'Contact us'];
+>>>>>>> 83e3c64e782ae412c653c3f68fd70921e95fd23d
 function config(): array {
     static $config;
     if ($config !== null) return $config;

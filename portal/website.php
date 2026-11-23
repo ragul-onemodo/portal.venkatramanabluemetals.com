@@ -14,7 +14,11 @@ function setNodeText(DOMNode $node,string $text): void {
  $node->appendChild($node->ownerDocument->createTextNode($text));
 }
 // Shared company fields stay consistent on every page, including mail and phone links.
+<<<<<<< HEAD
 $replacements=['Venkatramana Blue Metals'=>$company['name'],'venkatramana.vbm@gmail.com'=>$company['email'],'33AAVFV7259F1ZK'=>$company['gst'],'+91 98422 72439'=>$company['phone'],'B. Nandakumar & E. Kamalaveni'=>$company['partners'],'30+ YEARS OF INDUSTRY EXPERIENCE'=>$company['experience'].' YEARS OF INDUSTRY EXPERIENCE'];
+=======
+$replacements=['VBM Quarry & Crushers'=>$company['name'],'VBM — Quarry & Crushers'=>$company['name'],'VBM QUARRY & CRUSHERS'=>$company['name'],'Venkatramana Blue Metals'=>$company['name'],'venkatramana.vbm@gmail.com'=>$company['email'],'33AAVFV7259F1ZK'=>$company['gst'],'+91 98422 72439'=>$company['phone'],'B. Nandakumar & E. Kamalaveni'=>$company['partners'],'30+ YEARS OF INDUSTRY EXPERIENCE'=>$company['experience'].' YEARS OF INDUSTRY EXPERIENCE'];
+>>>>>>> 83e3c64e782ae412c653c3f68fd70921e95fd23d
 foreach($x->query('//body//text()[not(ancestor::script) and not(ancestor::style)]') as $n)$n->nodeValue=strtr($n->nodeValue,$replacements);
 foreach($x->query('//a[starts-with(@href,"mailto:")]') as $n)$n->setAttribute('href','mailto:'.$company['email']);
 foreach($x->query('//a[starts-with(@href,"tel:")]') as $n)$n->setAttribute('href','tel:'.preg_replace('/[^+0-9]/','',$company['phone']));
@@ -23,7 +27,11 @@ foreach($x->query('//address[contains(@class,"business-address")]') as $n)setNod
 foreach($x->query('//section[@id="company-details"]//dt') as $n)if(trim($n->textContent)==='Established')$n->nextSibling->nodeValue=$company['established'];
 foreach($x->query('//section[@id="locations"]//article') as $i=>$n){
  if($i===1)replaceInner($d,$n,'<p class="eyebrow dark">BRANCH OFFICE</p><h3>Branch address</h3><p>'.nl2br(e($company['branch'])).'</p>');
+<<<<<<< HEAD
  if($i===2)replaceInner($d,$n,'<p class="eyebrow dark">QUARRY &amp; CRUSHER SITE</p><h3>Our plant</h3><p>'.nl2br(e($company['site'])).'</p><p>Please call before visiting to confirm access arrangements.</p>');
+=======
+ if($i===2)replaceInner($d,$n,'<p class="eyebrow dark">QUARRY &amp; CRUSHER SITE</p><h3>Our Plant</h3><p>'.nl2br(e($company['site'])).'</p><p>Please call before visiting to confirm access arrangements.</p>');
+>>>>>>> 83e3c64e782ae412c653c3f68fd70921e95fd23d
 }
 foreach($x->query('//iframe[contains(@src,"youtube")]') as $n)$n->setAttribute('src','https://www.youtube-nocookie.com/embed/'.$company['video']);
 foreach($x->query('//body//text()[not(ancestor::script)]') as $n)$n->nodeValue=str_replace(['350 TPH','350 tonnes per hour'],[$company['capacity'].' TPH',$company['capacity'].' tonnes per hour'],$n->nodeValue);

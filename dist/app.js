@@ -8,7 +8,11 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
 document.querySelectorAll('[data-material]').forEach(button=>button.addEventListener('click',()=>{document.querySelector('#material').value=button.dataset.material;document.querySelector('#enquiry').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})}));
 document.querySelectorAll('.step').forEach(step=>step.addEventListener('click',()=>{document.querySelectorAll('.step').forEach(s=>{const active=s===step;s.classList.toggle('active',active);s.setAttribute('aria-expanded',String(active));s.querySelector('b').textContent=active?'−':'+'})}));
 document.querySelector('#year').textContent=new Date().getFullYear();
+<<<<<<< HEAD
 document.querySelector('#enquiry-form')?.addEventListener('submit',event=>{event.preventDefault();const form=new FormData(event.currentTarget);const content='VBM QUARRY & CRUSHERS — MATERIAL ENQUIRY\n\n'+[...form].map(([key,value])=>key.toUpperCase()+': '+value).join('\n\n')+'\n\nPrepared locally. This enquiry has not been sent.\n';const url=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='VBM-material-enquiry.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.querySelector('#form-status').textContent='Your enquiry file is ready. Keep it to share with your supplier. No message has been sent.'});
+=======
+document.querySelector('#enquiry-form')?.addEventListener('submit',event=>{event.preventDefault();const form=new FormData(event.currentTarget);const content='VENKATRAMANA BLUE METALS — MATERIAL ENQUIRY\n\n'+[...form].map(([key,value])=>key.toUpperCase()+': '+value).join('\n\n')+'\n\nPrepared locally. This enquiry has not been sent.\n';const url=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='VBM-material-enquiry.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.querySelector('#form-status').textContent='Your enquiry file is ready. Keep it to share with your supplier. No message has been sent.'});
+>>>>>>> 83e3c64e782ae412c653c3f68fd70921e95fd23d
 
 const requestedMaterial=new URLSearchParams(location.search).get('material');
 const materialSelect=document.querySelector('#material');
