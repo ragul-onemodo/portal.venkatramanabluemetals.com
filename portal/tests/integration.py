@@ -151,7 +151,19 @@ class PortalTests(unittest.TestCase):
         self.request('/admin',{'csrf':token,'action':'logout'})
         self.assertTrue(self.request('/admin')[2].url.endswith('/admin/login'))
 
-    def test_08_login_rate_limit(self):
+    def test_08_contact_number_for_existing_installations(self):
+        for stored, expected in [('+91 98422 72439', '+919087000439'), ('+91 90000 00001', '+919000000001')]:
+            with closing(sqlite3.connect(self.database)) as conn:
+                company=json.loads(conn.execute("SELECT payload FROM records WHERE id='company'").fetchone()[0])
+                company['phone']=stored
+                conn.execute("UPDATE records SET payload=? WHERE id='company'", (json.dumps(company),))
+                conn.commit()
+            for page in ['/contact.html','/owner-profile.html']:
+                html=self.request(page)[1]
+                self.assertIn('href="tel:'+expected+'"',html)
+                self.assertNotIn('98422 72439',html)
+
+    def test_09_login_rate_limit(self):
         token=self.token('/admin/login')
         for _ in range(15):
             _,html,_=self.request('/admin/login',{'csrf':token,'email':'missing@example.test','password':'incorrect'})

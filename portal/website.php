@@ -14,7 +14,7 @@ function setNodeText(DOMNode $node,string $text): void {
  $node->appendChild($node->ownerDocument->createTextNode($text));
 }
 // Shared company fields stay consistent on every page, including mail and phone links.
-$replacements=['VBM Quarry & Crushers'=>$company['name'],'VBM — Quarry & Crushers'=>$company['name'],'VBM QUARRY & CRUSHERS'=>$company['name'],'Venkatramana Blue Metals'=>$company['name'],'venkatramana.vbm@gmail.com'=>$company['email'],'33AAVFV7259F1ZK'=>$company['gst'],'+91 98422 72439'=>$company['phone'],'B. Nandakumar & E. Kamalaveni'=>$company['partners'],'30+ YEARS OF INDUSTRY EXPERIENCE'=>$company['experience'].' YEARS OF INDUSTRY EXPERIENCE'];
+$replacements=['VBM Quarry & Crushers'=>$company['name'],'VBM — Quarry & Crushers'=>$company['name'],'VBM QUARRY & CRUSHERS'=>$company['name'],'Venkatramana Blue Metals'=>$company['name'],'venkatramana.vbm@gmail.com'=>$company['email'],'33AAVFV7259F1ZK'=>$company['gst'],'+91 98422 72439'=>$company['phone'],'+91 90870 00439'=>$company['phone'],'B. Nandakumar & E. Kamalaveni'=>$company['partners'],'30+ YEARS OF INDUSTRY EXPERIENCE'=>$company['experience'].' YEARS OF INDUSTRY EXPERIENCE'];
 foreach($x->query('//body//text()[not(ancestor::script) and not(ancestor::style)]') as $n)$n->nodeValue=strtr($n->nodeValue,$replacements);
 foreach($x->query('//a[starts-with(@href,"mailto:")]') as $n)$n->setAttribute('href','mailto:'.$company['email']);
 foreach($x->query('//a[starts-with(@href,"tel:")]') as $n)$n->setAttribute('href','tel:'.preg_replace('/[^+0-9]/','',$company['phone']));

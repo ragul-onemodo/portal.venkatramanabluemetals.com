@@ -21,7 +21,16 @@ function db(): PDO {
 function query(string $sql,array $params=[]): PDOStatement { $s=db()->prepare($sql);$s->execute($params);return $s; }
 function e(mixed $v): string {return htmlspecialchars((string)$v,ENT_QUOTES|ENT_SUBSTITUTE,'UTF-8');}
 function json(array $v): string {return json_encode($v,JSON_THROW_ON_ERROR|JSON_UNESCAPED_UNICODE);}
-function record(string $id): array { $r=query('SELECT payload FROM records WHERE id=?',[$id])->fetchColumn();return $r?json_decode($r,true,512,JSON_THROW_ON_ERROR):[]; }
+function record(string $id): array {
+    $r=query('SELECT payload FROM records WHERE id=?',[$id])->fetchColumn();
+    $data=$r?json_decode($r,true,512,JSON_THROW_ON_ERROR):[];
+    // Apply the approved contact replacement to older saved company settings too.
+    // Other administrator-entered phone numbers remain unchanged.
+    if($id==='company' && in_array(preg_replace('/\D/','',$data['phone']??''),['919842272439','9842272439'],true)) {
+        $data['phone']='+91 90870 00439';
+    }
+    return $data;
+}
 function records(string $kind): array {
     return array_map(fn($r)=>['id'=>$r['id']]+json_decode($r['payload'],true,512,JSON_THROW_ON_ERROR),query('SELECT id,payload FROM records WHERE kind=? ORDER BY updated_at DESC,id',[$kind])->fetchAll());
 }

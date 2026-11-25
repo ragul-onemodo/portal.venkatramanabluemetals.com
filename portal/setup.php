@@ -9,7 +9,7 @@ foreach([
  'CREATE TABLE IF NOT EXISTS audit(id VARCHAR(48) PRIMARY KEY,actor VARCHAR(48) NOT NULL,event VARCHAR(255) NOT NULL,created_at VARCHAR(40) NOT NULL)',
 ] as $sql) db()->exec($sql);
 if(!record('company')) save('company','settings',[
- 'name'=>'Venkatramana Blue Metals','email'=>'venkatramana.vbm@gmail.com','phone'=>'+91 98422 72439','gst'=>'33AAVFV7259F1ZK','established'=>'2022','partners'=>'B. Nandakumar & E. Kamalaveni',
+ 'name'=>'Venkatramana Blue Metals','email'=>'venkatramana.vbm@gmail.com','phone'=>'+91 90870 00439','gst'=>'33AAVFV7259F1ZK','established'=>'2022','partners'=>'B. Nandakumar & E. Kamalaveni',
  'address'=>'SF NO.126/1,126/2A & 127, Thaneerpanthal, Chinnakallipatti Village, Mettupalayam, Sirumugai, Coimbatore, Tamil Nadu – 641302',
  'branch'=>'Branch address to be confirmed.','site'=>'Chinnakallipatti, Coimbatore, Tamil Nadu','experience'=>'30+','capacity'=>'350','video'=>'hcX54FTgfYM','logo'=>'']);
 if(!record('seeded')) {
